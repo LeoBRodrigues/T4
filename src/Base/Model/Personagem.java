@@ -1,33 +1,32 @@
 package Base.Model;
-import java.util.Objects;
-import java.util.Random;
-import java.util.UUID;
 
-public class Personagem {
-    Random random = new Random();
+public class Personagem { ;
 
-    private Integer id;
+    static int instanceCounter = 0;
+    private int id;
     private String nome;
     private String raca;
     private String profissao;
-    private Integer mana;
-    private Integer ataque;
-    private Integer ataque_magico;
-    private Integer defesa;
-    private Integer defesa_magica;
-    private Integer velocidade;
-    private Integer destreza;
-    private Integer experiencia;
-    private Integer nivel_atual;
+    private int mana;
+    private int ataque;
+    private int ataque_magico;
+    private int defesa;
+    private int defesa_magica;
+    private int velocidade;
+    private int destreza;
+    private int experiencia;
+    private int nivel_atual;
 
-    public Personagem(String nome, String raca, String profissao, Integer mana, Integer ataque, Integer defesa, Integer defesa_magica, Integer velocidade, Integer destreza, Integer experiencia, Integer nivel_atual) {
-        this.id = Math.abs(Objects.hash(nome,raca,profissao)+random.nextInt(10000));
+    public Personagem(String nome, String raca, String profissao, int mana, int ataque, int ataque_magico, int defesa, int defesa_magica, int velocidade, int destreza, int experiencia, int nivel_atual) {
+        instanceCounter++;
+
+        this.id = instanceCounter;
         this.nome = nome;
         this.raca = raca;
         this.profissao = profissao;
         this.mana = mana;
         this.ataque = ataque;
-        this.ataque_magico = ataque;
+        this.ataque_magico = ataque_magico;
         this.defesa = defesa;
         this.defesa_magica = defesa_magica;
         this.velocidade = velocidade;
@@ -55,7 +54,7 @@ public class Personagem {
                 "-------------------------------";
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -71,39 +70,39 @@ public class Personagem {
         return profissao;
     }
 
-    public Integer getMana() {
+    public int getMana() {
         return mana;
     }
 
-    public Integer getAtaque() {
+    public int getAtaque() {
         return ataque;
     }
 
-    public Integer getAtaque_magico() {
+    public int getAtaque_magico() {
         return ataque_magico;
     }
 
-    public Integer getDefesa() {
+    public int getDefesa() {
         return defesa;
     }
 
-    public Integer getDefesa_magica() {
+    public int getDefesa_magica() {
         return defesa_magica;
     }
 
-    public Integer getVelocidade() {
+    public int getVelocidade() {
         return velocidade;
     }
 
-    public Integer getDestreza() {
+    public int getDestreza() {
         return destreza;
     }
 
-    public Integer getExperiencia() {
+    public int getExperiencia() {
         return experiencia;
     }
 
-    public Integer getNivel_atual() {
+    public int getNivel_atual() {
         return nivel_atual;
     }
 }

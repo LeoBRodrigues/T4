@@ -6,6 +6,8 @@ public interface DAO<T> {
 
     void insertDB(T t);
 
+    void deleteDB(T t, int i);
+
     List<T> getAll();
 
 }

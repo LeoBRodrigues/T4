@@ -2,10 +2,8 @@ package Base.DAO;
 
 import Base.Model.Personagem;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonagemDAO implements DAO<Personagem> {
@@ -29,7 +27,39 @@ public class PersonagemDAO implements DAO<Personagem> {
 
     @Override
     public List<Personagem> getAll() {
-        return null;
+
+        List<Personagem> personagens = new ArrayList<>();
+
+        try {
+
+            String query = "SELECT * FROM personagens";
+
+            Statement st = conn.createStatement();
+            ResultSet result = st.executeQuery(query);
+
+            while (result.next()) {
+                Personagem personagem = new Personagem(
+                        result.getString("nome"),
+                        result.getString("raca"),
+                        result.getString("profissao"),
+                        result.getInt("mana"),
+                        result.getInt("ataque"),
+                        result.getInt("ataque_magico"),
+                        result.getInt("defesa"),
+                        result.getInt("defesa_magica"),
+                        result.getInt("velocidade"),
+                        result.getInt("destreza"),
+                        result.getInt("experiencia"),
+                        result.getInt("nivel_atual"));
+
+                personagens.add(personagem);
+            }
+
+
+
+        } catch (Exception e) { e.printStackTrace(); }
+
+        return personagens;
     }
 
 
@@ -53,9 +83,9 @@ public class PersonagemDAO implements DAO<Personagem> {
             ps.setInt(8, personagem.getDefesa());
             ps.setInt(9, personagem.getDefesa_magica());
             ps.setInt(10, personagem.getVelocidade());
-            ps.setInt(11, personagem.getMana());
-            ps.setInt(12, personagem.getMana());
-            ps.setInt(13, personagem.getMana());
+            ps.setInt(11, personagem.getDestreza());
+            ps.setInt(12, personagem.getExperiencia());
+            ps.setInt(13, personagem.getNivel_atual());
 
             ps.executeUpdate();
 
@@ -64,5 +94,21 @@ public class PersonagemDAO implements DAO<Personagem> {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void deleteDB(Personagem personagem, int ID) {
+
+        try {
+            String query = "DELETE FROM personagens WHERE id = ? ";
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, ID);
+            ps.executeUpdate();
+
+        } catch (Exception e){
+
+            e.printStackTrace();
+        }
     }
 }
