@@ -5,13 +5,14 @@ import Base.Model.Personagem;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 public class PersonagemDAO implements DAO<Personagem> {
 
     private Connection conn;
 
     private String DB = "jdbc:sqlite:T4_RPG.db";
-
 
 
     public PersonagemDAO(){
@@ -52,6 +53,7 @@ public class PersonagemDAO implements DAO<Personagem> {
                         result.getInt("experiencia"),
                         result.getInt("nivel_atual"));
 
+                personagem.setId(result.getInt("ID"));
                 personagens.add(personagem);
             }
 
@@ -68,7 +70,18 @@ public class PersonagemDAO implements DAO<Personagem> {
 
         try {
             String query = "INSERT INTO personagens " +
-                    "(id, nome, raca, profissao, mana, ataque, ataque_magico, defesa, defesa_magica, velocidade, destreza, experiencia, nivel_atual ) " +
+                    "(id, " +
+                    "nome, " +
+                    "raca, " +
+                    "profissao, " +
+                    "mana, " +
+                    "ataque, " +
+                    "ataque_magico, " +
+                    "defesa, defesa_magica, " +
+                    "velocidade, " +
+                    "destreza, " +
+                    "experiencia, " +
+                    "nivel_atual ) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement ps = conn.prepareStatement(query);
@@ -100,15 +113,69 @@ public class PersonagemDAO implements DAO<Personagem> {
     public void deleteDB(Personagem personagem, int ID) {
 
         try {
-            String query = "DELETE FROM personagens WHERE id = ? ";
+            String query = "DELETE FROM personagens WHERE ID = ? ";
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, ID);
             ps.executeUpdate();
+
 
         } catch (Exception e){
 
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void alterDB(Personagem personagem, int ID){
+
+        try {
+
+            String query = "UPDATE personagens " +
+                    "SET nome = ? , " +
+                    "raca = ? , " +
+                    "profissao = ? , " +
+                    "mana= ? , " +
+                    "ataque= ? , " +
+                    "ataque_magico= ? , " +
+                    "defesa= ? , " +
+                    "defesa_magica= ? , " +
+                    "velocidade= ? , " +
+                    "destreza= ? , " +
+                    "experiencia= ? , " +
+                    "nivel_atual= ?  " +
+                    "WHERE ID = ?";
+
+            PreparedStatement ps = conn.prepareStatement(query);
+
+            ps.setString(1, personagem.getNome());
+            ps.setString(2, personagem.getRaca());
+            ps.setString(3, personagem.getProfissao());
+            ps.setInt(4, personagem.getMana());
+            ps.setInt(5, personagem.getAtaque());
+            ps.setInt(6, personagem.getAtaque_magico());
+            ps.setInt(7, personagem.getDefesa());
+            ps.setInt(8, personagem.getDefesa_magica());
+            ps.setInt(9, personagem.getVelocidade());
+            ps.setInt(10, personagem.getDestreza());
+            ps.setInt(11, personagem.getExperiencia());
+            ps.setInt(12, personagem.getNivel_atual());
+            ps.setInt(13, ID);
+
+            ps.executeUpdate();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public int geradorID(Personagem personagem){
+
+        Random random = new Random();
+
+        return Math.abs(Objects.hash(personagem.getRaca(),personagem.getProfissao()) + random.nextInt(10000));
+    }
+
 }
+

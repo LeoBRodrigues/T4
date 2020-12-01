@@ -16,6 +16,7 @@ public class Menu {
     private boolean flag = true;
 
     public void run(){
+
         while(flag) {
             System.out.println("Qual a ação desejada?");
             System.out.println("" +
@@ -49,7 +50,7 @@ public class Menu {
         }
     }
 
-    private void criarPersonagem() {
+    private Personagem inputDados(){
 
         System.out.println("Nome: ");
         String nome = scanner.nextLine();
@@ -76,7 +77,8 @@ public class Menu {
         System.out.println("Nivel atual: ");
         int nivel_atual = Integer.parseInt(scanner.nextLine());
 
-        Personagem personagem = new Personagem(nome,
+        return new Personagem(
+                nome,
                 raca,
                 profissao,
                 mana,
@@ -88,6 +90,18 @@ public class Menu {
                 destreza,
                 experiencia,
                 nivel_atual);
+    }
+
+    private void updateDB() {
+        DBPersonagens = dao.getAll();
+    }
+
+    private void criarPersonagem() {
+
+
+        Personagem personagem = inputDados();
+
+        personagem.setId(dao.geradorID(personagem));
 
         dao.insertDB(personagem);
 
@@ -106,22 +120,26 @@ public class Menu {
                 dao.deleteDB(personagem, ID);
                 System.out.println("Personagem removida com sucesso.");
                 break;
-            } else {
-                System.out.println("ID não encontrada.");
             }
         }
-
-
-
     }
 
     private void modificarPersonagem() {
-        System.out.println("Modificar");
+        System.out.println("Digite o ID da personagem a ser modificada: ");
+
+        int ID = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Digite os novos dados da personagem: ");
+
+        Personagem personagem = inputDados();
+
+        dao.alterDB(personagem, ID);
     }
 
     private void consultarPersonagens() {
 
         System.out.println("PERSONAGENS CADASTRADOS: " + '\n');
+        updateDB();
 
         for (Personagem personagem : DBPersonagens) {
             System.out.print(personagem + "\n");

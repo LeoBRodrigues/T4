@@ -2,7 +2,6 @@ package Base.Model;
 
 public class Personagem { ;
 
-    static int instanceCounter = 0;
     private int id;
     private String nome;
     private String raca;
@@ -18,9 +17,7 @@ public class Personagem { ;
     private int nivel_atual;
 
     public Personagem(String nome, String raca, String profissao, int mana, int ataque, int ataque_magico, int defesa, int defesa_magica, int velocidade, int destreza, int experiencia, int nivel_atual) {
-        instanceCounter++;
 
-        this.id = instanceCounter;
         this.nome = nome;
         this.raca = raca;
         this.profissao = profissao;
@@ -52,6 +49,10 @@ public class Personagem { ;
                 "Experiência: " + experiencia +'\n' +
                 "Nível Atual: " + nivel_atual +'\n' +
                 "-------------------------------";
+    }
+
+    public void setId(int ID){
+        this.id = ID;
     }
 
     public int getId() {

@@ -8,6 +8,8 @@ public interface DAO<T> {
 
     void deleteDB(T t, int i);
 
+    void alterDB(T t, int i);
+
     List<T> getAll();
 
 }
