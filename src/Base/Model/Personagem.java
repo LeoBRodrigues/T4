@@ -33,6 +33,7 @@ public class Personagem {
     @Override
     public String toString() {
         return "-----------Personagem----------" +'\n' +
+                "ID: " + id +'\n' +
                 "Nome: " + nome + '\n' +
                 "Raça: " + raca + '\n' +
                 "Profissão: " + profissao + '\n' +
@@ -44,7 +45,6 @@ public class Personagem {
                 "Destreza: " + destreza +'\n' +
                 "Experiência: " + experiencia +'\n' +
                 "Nível Atual: " + nivel_atual +'\n' +
-                "ID: " + id +'\n' +
                 "-------------------------------";
     }
 
