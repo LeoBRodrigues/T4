@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface DAO<T> {
 
-    void insertDB();
+    void insertDB(T t);
 
     List<T> getAll();
 

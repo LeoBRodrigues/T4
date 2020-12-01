@@ -3,7 +3,7 @@ import java.util.UUID;
 
 public class Personagem {
 
-    private UUID id = UUID.randomUUID();
+    private int id;
     private String nome;
     private String raca;
     private String profissao;
@@ -48,7 +48,7 @@ public class Personagem {
                 "-------------------------------";
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
