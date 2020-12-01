@@ -1,6 +1,9 @@
 package Base.Model;
+import java.util.UUID;
 
 public class Personagem {
+
+    private UUID id = UUID.randomUUID();
     private String nome;
     private String raca;
     private String profissao;
@@ -41,6 +44,55 @@ public class Personagem {
                 "Destreza: " + destreza +'\n' +
                 "Experiência: " + experiencia +'\n' +
                 "Nível Atual: " + nivel_atual +'\n' +
+                "ID: " + id +'\n' +
                 "-------------------------------";
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getRaca() {
+        return raca;
+    }
+
+    public String getProfissao() {
+        return profissao;
+    }
+
+    public Integer getMana() {
+        return mana;
+    }
+
+    public Integer getAtaque() {
+        return ataque;
+    }
+
+    public Integer getDefesa() {
+        return defesa;
+    }
+
+    public Integer getDefesa_magica() {
+        return defesa_magica;
+    }
+
+    public Integer getVelocidade() {
+        return velocidade;
+    }
+
+    public Integer getDestreza() {
+        return destreza;
+    }
+
+    public Integer getExperiencia() {
+        return experiencia;
+    }
+
+    public Integer getNivel_atual() {
+        return nivel_atual;
     }
 }
