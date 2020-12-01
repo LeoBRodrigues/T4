@@ -12,6 +12,7 @@ public class Personagem {
     private String profissao;
     private Integer mana;
     private Integer ataque;
+    private Integer ataque_magico;
     private Integer defesa;
     private Integer defesa_magica;
     private Integer velocidade;
@@ -26,6 +27,7 @@ public class Personagem {
         this.profissao = profissao;
         this.mana = mana;
         this.ataque = ataque;
+        this.ataque_magico = ataque;
         this.defesa = defesa;
         this.defesa_magica = defesa_magica;
         this.velocidade = velocidade;
@@ -43,6 +45,7 @@ public class Personagem {
                 "Profissão: " + profissao + '\n' +
                 "Mana: " + mana + '\n' +
                 "Ataque: " + ataque +'\n' +
+                "Ataque Mágico: " + ataque_magico + '\n' +
                 "Defesa: " + defesa +'\n' +
                 "Defesa Mágica: " + defesa_magica +'\n' +
                 "Velocidade: " + velocidade +'\n' +
@@ -74,6 +77,10 @@ public class Personagem {
 
     public Integer getAtaque() {
         return ataque;
+    }
+
+    public Integer getAtaque_magico() {
+        return ataque_magico;
     }
 
     public Integer getDefesa() {
