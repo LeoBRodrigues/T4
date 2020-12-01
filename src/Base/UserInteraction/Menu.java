@@ -1,12 +1,15 @@
 package Base.UserInteraction;
 
+import Base.DAO.PersonagemDAO;
 import Base.Model.Personagem;
 
 import java.util.Scanner;
 
 public class Menu {
 
-    Scanner scanner = new Scanner(System.in);
+
+    private PersonagemDAO dao = new PersonagemDAO();
+    private Scanner scanner = new Scanner(System.in);
 
     public void run(){
         System.out.println("Qual a ação desejada?");
@@ -39,6 +42,7 @@ public class Menu {
     }
 
     private void criarPersonagem() {
+
         System.out.println("Nome: ");
         String nome = scanner.nextLine();
         System.out.println("Raça: ");
@@ -64,7 +68,15 @@ public class Menu {
 
         Personagem personagem = new Personagem( nome,  raca,  profissao,  mana,  ataque,  defesa,  defesa_magica,  velocidade,  destreza,  experiencia,  nivel_atual);
 
+
+
+        dao.insertDB(personagem);
+
+        System.out.println("INSERIDO COM SUCESSO");
         System.out.println(personagem);
+
+
+
 
 
     }
