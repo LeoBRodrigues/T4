@@ -15,6 +15,10 @@ public class Menu {
     private List<Personagem> DBPersonagens = dao.getAll();
     private boolean flag = true;
 
+    /**
+     * Função de funcionamento principal.
+     */
+
     public void run(){
 
         while(flag) {
@@ -30,6 +34,10 @@ public class Menu {
         }
     }
 
+    /**
+     * Função para lidar com os inputs de usuários.
+     * @param option entrada númerica do usuário.
+     */
     private void userAction(String option){
         switch (option.toLowerCase()){
             case ("0"):
@@ -47,9 +55,16 @@ public class Menu {
             case("q"):
                 flag = false;
                 break;
+            default:
+                System.out.println("Opção Inválida. Tente novamente." );
+
         }
     }
 
+    /**
+     * Lê os dados da personagem sendo cadastrada ou modificada.
+     * @return objeto do tipo Personagem com seus atributos cadastrados.
+     */
     private Personagem inputDados(){
 
         System.out.println("Nome: ");
@@ -92,10 +107,16 @@ public class Menu {
                 nivel_atual);
     }
 
+    /**
+     * Atualiza o banco de dados.
+     */
     private void updateDB() {
         DBPersonagens = dao.getAll();
     }
 
+    /**
+     * Cria a personagem a ser cadastrada.
+     */
     private void criarPersonagem() {
 
 
@@ -110,6 +131,9 @@ public class Menu {
 
     }
 
+    /**
+     * Apaga a Personagem selecionada por sua ID.
+     */
     private void apagarPersonagem() {
         System.out.println("Digite o ID da personagem a ser apagada: ");
 
@@ -124,6 +148,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Modifica a Personagem selecionada por sua ID.
+     */
     private void modificarPersonagem() {
         System.out.println("Digite o ID da personagem a ser modificada: ");
 
@@ -136,6 +163,9 @@ public class Menu {
         dao.alterDB(personagem, ID);
     }
 
+    /**
+     * Mostra todas as personagens cadastradas no sistema.
+     */
     private void consultarPersonagens() {
 
         System.out.println("PERSONAGENS CADASTRADOS: " + '\n');

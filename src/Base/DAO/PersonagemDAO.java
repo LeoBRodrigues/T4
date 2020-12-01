@@ -14,7 +14,9 @@ public class PersonagemDAO implements DAO<Personagem> {
 
     private String DB = "jdbc:sqlite:T4_RPG.db";
 
-
+    /**
+     * Construtor que lida com conexão ao banco de dados.
+     */
     public PersonagemDAO(){
 
         try {
@@ -26,6 +28,10 @@ public class PersonagemDAO implements DAO<Personagem> {
 
     }
 
+    /**
+     * Retorna todas as personagens cadastradas no banco de dados
+     * @return Lista de personagens com objetos do tipo Personagem.
+     */
     @Override
     public List<Personagem> getAll() {
 
@@ -65,6 +71,10 @@ public class PersonagemDAO implements DAO<Personagem> {
     }
 
 
+    /**
+     * Insere personagem atribuida no banco de dados.
+     * @param personagem Personagem a ser inserida.
+     */
     @Override
     public void insertDB(Personagem personagem) {
 
@@ -109,6 +119,11 @@ public class PersonagemDAO implements DAO<Personagem> {
 
     }
 
+    /**
+     * Remove personagem do banco de dados de acordo com seu ID.
+     * @param personagem Personagem a ser testada contra o ID
+     * @param ID ID da personagem a ser deletada.
+     */
     @Override
     public void deleteDB(Personagem personagem, int ID) {
 
@@ -126,6 +141,11 @@ public class PersonagemDAO implements DAO<Personagem> {
         }
     }
 
+    /**
+     * Altera personagem baseada em seu ID.
+     * @param personagem Personagem a ser testada contra o ID
+     * @param ID ID da personagem a ser modificada.
+     */
     @Override
     public void alterDB(Personagem personagem, int ID){
 
@@ -170,6 +190,12 @@ public class PersonagemDAO implements DAO<Personagem> {
 
     }
 
+    /**
+     * Função para gerar números pseudo aleatórios para servirem de ID.
+     * @param personagem personagem a ter o ID atribuido.
+     * @return retorna um número cálculado pelo hash de atributos da personagem somados a um número
+     * pseudo aleatório.
+     */
     public int geradorID(Personagem personagem){
 
         Random random = new Random();
