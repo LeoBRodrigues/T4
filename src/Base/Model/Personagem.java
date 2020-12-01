@@ -1,9 +1,12 @@
 package Base.Model;
+import java.util.Objects;
+import java.util.Random;
 import java.util.UUID;
 
 public class Personagem {
+    Random random = new Random();
 
-    private UUID id = UUID.randomUUID();
+    private Integer id;
     private String nome;
     private String raca;
     private String profissao;
@@ -17,6 +20,7 @@ public class Personagem {
     private Integer nivel_atual;
 
     public Personagem(String nome, String raca, String profissao, Integer mana, Integer ataque, Integer defesa, Integer defesa_magica, Integer velocidade, Integer destreza, Integer experiencia, Integer nivel_atual) {
+        this.id = Math.abs(Objects.hash(nome,raca,profissao)+random.nextInt(10000));
         this.nome = nome;
         this.raca = raca;
         this.profissao = profissao;
@@ -48,7 +52,7 @@ public class Personagem {
                 "-------------------------------";
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
