@@ -1,5 +1,7 @@
 package Base.UserInteraction;
 
+import Base.Model.Personagem;
+
 import java.util.Scanner;
 
 public class Menu {
@@ -38,25 +40,45 @@ public class Menu {
 
     private void criarPersonagem() {
         System.out.println("Nome: ");
+        String nome = scanner.nextLine();
         System.out.println("Raça: ");
+        String raca = scanner.nextLine();
         System.out.println("Profissao: ");
+        String profissao = scanner.nextLine();
         System.out.println("Mana: ");
+        Integer mana = Integer.parseInt(scanner.nextLine());
         System.out.println("Ataque: ");
+        Integer ataque = Integer.parseInt(scanner.nextLine());
         System.out.println("Defesa: ");
+        Integer defesa = Integer.parseInt(scanner.nextLine());
         System.out.println("Defesa magica: ");
+        Integer defesa_magica =Integer.parseInt(scanner.nextLine());
+        System.out.println("Velocidade: ");
+        Integer velocidade =Integer.parseInt(scanner.nextLine());
         System.out.println("Destreza: ");
+        Integer destreza =Integer.parseInt(scanner.nextLine());
         System.out.println("Experiencia: ");
+        Integer experiencia = Integer.parseInt(scanner.nextLine());
         System.out.println("Nivel atual: ");
+        Integer nivel_atual = Integer.parseInt(scanner.nextLine());
+
+        Personagem personagem = new Personagem( nome,  raca,  profissao,  mana,  ataque,  defesa,  defesa_magica,  velocidade,  destreza,  experiencia,  nivel_atual);
+
+        System.out.println(personagem);
+
 
     }
 
     private void apagarPersonagem() {
+        System.out.println("Apagar");
     }
 
     private void modificarPersonagem() {
+        System.out.println("Modificar");
     }
 
     private void consultarPersonagens() {
+        System.out.println("Sair");
     }
 
 }
